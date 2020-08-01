@@ -1,1 +1,7 @@
 学习笔记
+
+这周主要学习了scrapy的中间件和selenium webdriver的模拟用户浏览行为的库，老师在课堂上也讲了各种反爬虫的方法，非常的有收获。
+
+通过作业虽然只是做了一点点scrapy的中间件和selenium的webdriver，但是发现了这些工具的强大，特别是selenium，有很多反爬虫的方法，有时间一定要深入好好学习了解。
+
+有机会甚至想尝试scrapy和selenium的结合来反爬虫。
