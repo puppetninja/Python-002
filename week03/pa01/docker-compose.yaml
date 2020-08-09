@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  nginx01:
+    image: nginx:latest
+    container_name: nginx01
+    networks:
+      - pmap_network
+  nginx02:
+    image: nginx:latest
+    container_name: nginx02
+    networks:
+      - pmap_network
+  nginx03:
+    image: nginx:latest
+    container_name: nginx03
+    networks:
+      - pmap_network
+  nginx04:
+    image: nginx:latest
+    container_name: nginx04
+    networks:
+      - pmap_network
+  nginx05:
+    image: nginx:latest
+    container_name: nginx05
+    networks:
+      - pmap_network
+
+networks:
+  pmap_network:
+    ipam:
+      config:
+        - subnet: 192.168.0.0/24
+    driver: bridge
