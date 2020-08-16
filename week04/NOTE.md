@@ -1,1 +1,4 @@
 学习笔记
+
+这周学习了pandas以及jieba和snownlp的语义分析库，由于对于sql并不很熟悉还是挣扎了一番，但是发
+现相较于传统的sql，pandas可以很pythonic地处理数据，非常地强大。
