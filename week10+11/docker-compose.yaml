@@ -1,0 +1,20 @@
+version: '3.3'
+
+services:
+  db:
+    container_name: django_db
+    image: mysql:8
+    volumes:
+      - mysql:/var/lib/mysql:rw
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: MyDjango
+      MYSQL_USER: django
+      MYSQL_PASSWORD: django
+    ports:
+      - "3306:3306"
+    hostname: django_db
+
+volumes:
+  mysql:
