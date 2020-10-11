@@ -1,5 +1,6 @@
 from random import randint
 from time import sleep
+from functools import partial
 
 import scrapy
 from scrapy.selector import Selector
@@ -27,22 +28,26 @@ class ValkyrieSpiderSpider(scrapy.Spider):
 
             sleep(randint(1, 5))  # Add a random sleep
             yield response.follow(url=phone_url,
-                                  callback=self.parse_comments)
+                                  callback=self.parse_comments,
+                                  meta={'phone': phone_name})
 
     def parse_comments(self, response):
         # phone title
-        title = Selector(response=response).\
-            xpath('//h1[@class="title J_title"]/text()').get().strip()
+        phone = response.meta.get('phone')
         # content list
         comments = Selector(response=response).\
             xpath('//li[@class="comment_list"]')
 
         for comment in comments:
+            comment_date = comment.\
+                xpath('.//meta[@itemprop="datePublished"]/@content').get()
             comment_wrap = comment.\
-                xpath('.//div[@class="comment_conWrap"]')
+                xpath('.//div[@class="comment_conWrap"][last()]')
             comment_content = comment_wrap.\
                 xpath('.//span[@itemprop="description"]/text()').get()
+
             yield ValkyriePhoneCommentItem({
-                'phone': title,
-                'content': comment_content
+                'phone': phone,
+                'content': comment_content,
+                'date': comment_date
             })
