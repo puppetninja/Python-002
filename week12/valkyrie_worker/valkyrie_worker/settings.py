@@ -85,9 +85,9 @@ HTTP_PROXY_LIST = [
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'valkyrie_worker.pipelines.ValkyrieWorkerPipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'valkyrie_worker.pipelines.ValkyrieWorkerPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -109,3 +109,11 @@ HTTP_PROXY_LIST = [
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+DB_INFO = {
+    'host': '127.0.0.1',
+    'port': 3306,
+    'user': 'root',
+    'password': 'root',
+    'db': 'valkyrie',
+    'charset': 'utf8'
+}

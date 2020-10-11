@@ -6,27 +6,27 @@ services:
     image: mysql:8.0
     volumes:
       - mysql:/var/lib/mysql:rw
-#      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: valkyrie
-      MYSQL_USER: scrapy
-      MYSQL_PASSWORD: scrapy
     ports:
       - 127.0.0.1:3306:3306
     hostname: valkyrie_db
-  #  scrapy:
-#    build: docker/scrapy
-  app:
-    container_name: valkyrie_app
-    build: docker/django
-    volumes:
-      - ./valkyrie_app:/app
-    ports:
-      - "8000:8000"
+
+  db_pma:
+    image: phpmyadmin/phpmyadmin
+    container_name: valkyrie_db_pma
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
     depends_on:
       - db
+    ports:
+      - 8080:80
 
 volumes:
   mysql:

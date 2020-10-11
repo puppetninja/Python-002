@@ -14,3 +14,4 @@ class ValkyriePhoneItem(scrapy.Item):
 class ValkyriePhoneCommentItem(scrapy.Item):
     phone = scrapy.Field()
     content = scrapy.Field()
+    date = scrapy.Field()
