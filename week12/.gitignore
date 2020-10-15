@@ -1,2 +1,4 @@
 *venv*
-*pycache*
+.ipynb*
+__pycache__/
+*.py[cod]
