@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Valkyrie舆情分析平台</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/jquery.slim.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Valkyrie舆情分析平台</a>
+    <!---
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" name="q" type="search" placeholder="搜索">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+    </form>
+    --->
+</nav>
+<div class="container">
+    {% if kw %}
+    <h3 class="mt-5 mb-3">关键字搜索： {{kw}}</h3>
+    {% else %}
+    <h3 class="mt-5 mb-3">日期间隔： {{ s_date }} 至 {{ e_date }} </h3>
+    {% endif %}
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">手机</th>
+            <th scope="col">评论</th>
+            <th scope="col">日期</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for comment in comments %}
+        <tr>
+            <th>{{ comment.phone_name }}</th>
+            <th>{{ comment.comment_content }}</th>
+            <th>{{ comment.comment_date }}</th>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

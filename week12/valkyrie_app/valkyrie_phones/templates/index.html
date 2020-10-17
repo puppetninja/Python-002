@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Valkyrie舆情分析平台</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/jquery.slim.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Valkyrie舆情分析平台</a>
+    <!---
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" name="q" type="search" placeholder="搜索">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+    </form>
+    --->
+</nav>
+<div class="container">
+    <h3 class="mt-5 mb-3">手机舆情分析</h3>
+    <form action="/search" method="get">
+        <label for="comment_keyword">关键词搜索: </label>
+        <input id="comment_keyword" type="text" name="comment_keyword">
+        <input type="submit" value="OK">
+    </form>
+    <form action="/search" method="get">
+        <label for="comment_date">日期搜索: </label>
+        <input id="start_date" type="date" name="start_date">
+        至
+        <input id="end_date" type="date" name="end_date">
+        <input type="submit" value="OK">
+    </form>
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">手机</th>
+            <th scope="col">官方链接</th>
+            <!---
+            <th scope="col" class="text-nowrap">舆情（正向）</th>
+            --->
+            <th scope="col">舆情（正向）</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for phone in phones %}
+        <tr>
+            <th>{{ phone.phone_name }}</th>
+            <td><a href="{{ phone.phone_url}}">{{ phone.phone_url}}</a></td>
+            <td>
+                <progress value="{{ phone.positive }}" max="100"></progress>
+                <span style="font-weight:bold">{{ phone.positive }}%</span>
+            </td>
+            <th><a href="/phones/{{ phone.id }}/">详情</a></th>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
